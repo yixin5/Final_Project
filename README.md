@@ -23,7 +23,7 @@ List and describe your simulation's variables of uncertainty (where you're using
 1. Total amount of red envelope
 2. The packets number of Each envelope.
 3. The number of group member
-4. The initial amount of each person
+4. The initial amount of each person.
 
 ## Hypothesis or hypotheses before running the simulation:
 
