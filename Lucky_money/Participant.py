@@ -24,6 +24,7 @@ class Participant:
         Return: the amonut of money in each samll envelope """
         n = int(np.random.uniform(1, total_amonut_of_envelope / 0.01,1))
         random_num_list = []
+
         for i in range(n + 1):
             random_num_list.append(randint(1, 10))
         rate = np.random.dirichlet(random_num_list, 1)
