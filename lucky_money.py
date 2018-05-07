@@ -8,6 +8,7 @@ relay methods and game environments affect the redistribution of wealth among me
 The numpy version we used in this project is 1.14.2.
 
 Group member: Tongyang Yan, Weihao Li, Yixin Zhou
+
 """
 
 import numpy as np
@@ -154,24 +155,73 @@ class Game:
 
 
 if __name__ == '__main__':
-    # Monte Carlo Simulation
 
-    # Create player dict with formats: {player_id: player_object}
+    def gini(wealths):
+        """Given the list of people's wealths, Calculate gini of these people.
+
+           Args:
+               wealths: A list of remained money, each element is a float
+
+           Return:
+               G: Float, gini of this group.
+        """
+
+        cum_wealths = np.cumsum(sorted(np.append(wealths, 0)))
+        sum_wealths = cum_wealths[-1]
+        x_array = np.array(range(0, len(cum_wealths))) / np.float(len(cum_wealths) - 1)
+        y_array = cum_wealths / sum_wealths
+        B = np.trapz(y_array, x=x_array)
+        A = 0.5 - B
+        G = A / (A + B)
+
+        return G
+
+    # Monte Carlo Simulation
+    #  Create player dict with formats: {player_id: player_object}
     # Here we create 10 players, set their initial money as 1000 RMB, and turn_num as 20
     players_num = 10
     initial_money = 1000
     turn_num = 80
+    simulation_times = 1000
 
     players = {}
-    for player_id in range(players_num):
+    for player_id in range(10):
         players[player_id] = Player(player_id, initial_money)
 
-    # Create game
-    game = Game(players, turn_num)
+    # Simulate process for the setted simulation times and save result of gini in gini_list
+    gini_list = []
+    for i in range(simulation_times):
+        game = Game(players, turn_num)
+        game.start_game(total_amount_mean, total_amount_std)
+        players_remained_money_list = [player.money_remained for player in list(players.values())]
+        G = gini(players_remained_money_list)
+        gini_list.append(G)
 
-    # start game
-    game.start_game(total_amount_mean, total_amount_std)
+    gini_array = np.array(gini_list)
 
-    for player_id, player in players.items():
-        print(player.money_remained)
-        print(type(player.money_remained))
+    # Create a dict whose key is group symbol, value is a numpy array containing the relevant gini
+    gini_group_dict = {}
+    gini_group1 = gini_array[gini_array < 0.2]
+    gini_group_dict["gini < 0.2"] = gini_group1
+    gini_group2 = gini_array[np.logical_and(gini_array >=0.2, gini_array < 0.3)]
+    gini_group_dict["0.2<= gini <= 0.3"] = gini_group2
+    gini_group3 = gini_array[np.logical_and(gini_array >=0.3, gini_array < 0.4)]
+    gini_group_dict["0.3 <= gini < 0.4"] = gini_group3
+    gini_group4 = gini_array[np.logical_and(gini_array >=0.4, gini_array < 0.5)]
+    gini_group_dict["0.4 <= gini < 0.5"] = gini_group4
+    gini_group5 = gini_array[gini_array >= 0.5]
+    gini_group_dict["gini >= 0.5"] = gini_group5
+
+    # Create a dict whose key is group symbol, value is the probability that a gini belongs to this symbol
+    gini_group_prob_dict ={}
+    for gini_group, gini_group_value in gini_group_dict.items():
+        group_num = gini_group_value.shape[0]
+        group_prob = group_num / simulation_times
+        gini_group_prob_dict[gini_group] = group_prob
+
+
+    # Print out the final result
+    for gini_group, gini_group_prob in gini_group_prob_dict.items():
+        print("The probability in group " + gini_group + " is %.2f."%(gini_group_prob))
+
+
