@@ -38,7 +38,13 @@ I think this distribution is most fitted to this variable because it enpower a w
 
 
 ## Analytical Summary of your findings: (e.g. Did you adjust the scenario based on previous simulation outcomes?  What are the management decisions one could make from your simulation's output, etc.)
-We first designed the scenario about Wechat Lucky Money. Based on the results of simulation we found the probability of gini coefficient located in 0.3-0.4 interval is the largest.
+We first designed the scenario about Wechat Lucky Money. Based on the results of simulation we found the probabilities of gini coefficient distribution are as following:
+The probability in group gini < 0.2 is 0.00. (Absolute balanced)
+The probability in group 0.2<= gini <= 0.3 is 0.10. (Relatively balanced)
+The probability in group 0.3 <= gini < 0.4 is 0.38. (Reasonable balanced)
+The probability in group 0.4 <= gini < 0.5 is 0.40. (Large gap between rich and poor)
+The probability in group gini >= 0.5 is 0.12. (Wide disparity in balance)
+
 
 ## Instructions on how to use the program:
 We need to garantee the data file(.csv) and the program(.py) to exist in the same directory. Then just run the program, the program will return the probability of the value of Gini coefficient in several intervals.
