@@ -1,4 +1,4 @@
- # Title: Model Study on "WeChat Lucky Money" with Monte Carlo Simulation
+> # Title: Model Study on "WeChat Lucky Money" with Monte Carlo Simulation
 
 ## Team Member(s): Yixin Zhou, Tongyang Yan, Weihao Li.
 
@@ -44,7 +44,7 @@ The probability in group gini < 0.2 is 0.00. (Absolute balanced) </br>
 The probability in group 0.2<= gini <= 0.3 is 0.10. (Relatively balanced)</br>
 The probability in group 0.3 <= gini < 0.4 is 0.38. (Reasonable balanced)</br>
 The probability in group 0.4 <= gini < 0.5 is 0.40. (Large gap between rich and poor)</br>
-The probability in group gini >= 0.5 is 0.12. (Wide disparity in balance)</br
+The probability in group gini >= 0.5 is 0.12. (Wide disparity in balance)</br>
 
 
 ## Instructions on how to use the program:
