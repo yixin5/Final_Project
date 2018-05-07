@@ -13,7 +13,7 @@ Our group's purpose is to implement Monte Carlo Simulation for the model of "Wec
 ## Simulation's variables of uncertainty
 List and describe your simulation's variables of uncertainty (where you're using pseudo-random number generation). For each such variable, how did you decide the range and probability distribution to use?  Do you think it's a good representation of reality?
 1. The amount of money in a red envelope.
-Range:0 ~ n
+Range:more than 0.
 Probability distribution: Normal distribution.
 I think the normal distribution is the best distribution for The amount of money in a red envelope, but we can modify it to be more realistic. For instance, in fact the maximum of a red envelope in wechat is 200 RMB.
 
@@ -23,7 +23,7 @@ Probability distribution: Uniform distribution.
 I think uniform distribution is not a good representation of reality because in fact many people like to divide one red envelope into multiple of 5 such as 5, 10, 20. Therefore the probability of these number will be larger than other numbers like 6, 7, 8, 9, 11, etc.  
 
 3. The amount of money in each small envelope.
-Range:0 ~ n 
+Range: more than 0.
 Probability distribution: Dirichlet distribution.
 I think this distribution is most fitted to this variable because it enpower a weight to each small envelope and seems like to be more realistic.
 
