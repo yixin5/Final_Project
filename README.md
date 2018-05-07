@@ -13,16 +13,19 @@ Our group's purpose is to implement Monte Carlo Simulation for the model of "Wec
 ## Simulation's variables of uncertainty
 List and describe your simulation's variables of uncertainty (where you're using pseudo-random number generation). For each such variable, how did you decide the range and probability distribution to use?  Do you think it's a good representation of reality?
 1. The amount of money in a red envelope.
-Range:
+Range:0 ~ n
 Probability distribution: Normal distribution.
+I think the normal distribution is the best distribution for The amount of money in a red envelope, but we can modify it to be more realistic. For instance, in fact the maximum of a red envelope in wechat is 200 RMB.
 
 2. The n small red envelopes a red envelope can be divided into.
-Range:
+Range: 1 ~ the number of people particapated the game.
 Probability distribution: Uniform distribution.
+I think uniform distribution is not a good representation of reality because in fact many people like to divide one red envelope into multiple of 5 such as 5, 10, 20. Therefore the probability of these number will be larger than other numbers like 6, 7, 8, 9, 11, etc.  
 
 3. The amount of money in each small envelope.
-Range:
+Range:0 ~ n 
 Probability distribution: Dirichlet distribution.
+I think this distribution is most fitted to this variable because it enpower a weight to each small envelope and seems like to be more realistic.
 
 ## Hypothesis or hypotheses before running the simulation:
 1. We assume that simulated data can effectively reflect the actual situation and can be used to study the model.
@@ -31,11 +34,16 @@ Probability distribution: Dirichlet distribution.
 4. Once a people has no money in his/her pocket, he/she will quit the game and can no longer send and receive red envelop.
 5. One game ends after 100 times of relays.
 6. We play the game for 100 times.
+7. We estimate the gini coefficient will be around 0.5.
 
 
 ## Analytical Summary of your findings: (e.g. Did you adjust the scenario based on previous simulation outcomes?  What are the management decisions one could make from your simulation's output, etc.)
+We first designed the scenario about Wechat Lucky Money. Based on the results of simulation we found the probability of gini coefficient located in 0.3-0.4 interval is the largest.
 
 ## Instructions on how to use the program:
+We need to garantee the data file(.csv) and the program(.py) to exist in the same directory. Then just run the program, the program will return the probability of the value of Gini coefficient in several intervals.
 
 ## All Sources Used:
-
+numpy.random
+Walter Gautschi. Numerical Analysis [M] . New York: Bi rkhäuser rkhäuser , 2012 . 101 -110110
+Gini Coefficient[E].http://en.wikipedia.org/wiki/Gini_coefficient /. 2015 -5-10
